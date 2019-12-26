@@ -3,7 +3,7 @@
 
 Name:          scala
 Version:       2.10.6
-Release:       12
+Release:       13
 Summary:       Combination of object-oriented and functional programming
 License:       BSD and CC0 and Public Domain
 URL:           http://www.scala-lang.org/
@@ -24,6 +24,8 @@ Patch2:        scala-2.10.3-compiler-pom.patch
 Patch3:        scala-2.10.2-java7.patch
 Patch4:        scala-2.10-jline.patch
 Patch5:        scala-2.10.4-build_xml.patch
+Patch6000:     CVE-2017-15288-pre.patch
+Patch6001:     CVE-2017-15288.patch
 BuildArch:     noarch
 
 BuildRequires: java-devel >= 1:1.7.0, ant, ant-junit, ant-contrib, jline >= 2.10, aqute-bnd, junit, javapackages-local, scala
@@ -156,5 +158,11 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime > /dev/null 2>&1 || :
 /usr/share/maven*
 
 %changelog
+* Thu Dec 26 2019 zhujunhao <zhujunhao5@huawei.com> - 2.10.6-13
+- Type:cves
+- ID:CVE-2017-15288
+- SUG:restart
+- DESC:fix CVE-2017-15288
+
 * Fri Dec 13 2019 openEuler Buildteam <buildteam@openeuler.org> - 2.10.6-12
 - Package init
