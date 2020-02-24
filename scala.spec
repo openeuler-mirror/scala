@@ -3,21 +3,18 @@
 
 Name:          scala
 Version:       2.10.6
-Release:       13
+Release:       14
 Summary:       Combination of object-oriented and functional programming
 License:       BSD and CC0 and Public Domain
 URL:           http://www.scala-lang.org/
 Source0:       %{name}-%{version}.tar.gz
 Source1:       scala-library-2.10.0-bnd.properties
-Source2:       scala-2.10.3-bootstrap.tgz
-Source3:       scala.gitinfo
-Source4:       http://www.scala-lang.org/files/archive/scala-2.10.4.tgz
-Source5:       generate-tarball.sh
-Source6:       scala.keys
-Source7:       scala.mime
-Source8:       scala-mime-info.xml
-Source9:       scala.ant.d
-Source10:      scala-bootstript.xml
+Source2:       scala.gitinfo
+Source3:       scala.keys
+Source4:       scala.mime
+Source5:       scala-mime-info.xml
+Source6:       scala.ant.d
+Source7:       scala-bootstript.xml
 Patch0:        scala-2.10.0-tooltemplate.patch
 Patch1:        scala-2.10.3-use_system_jline.patch
 Patch2:        scala-2.10.3-compiler-pom.patch
@@ -71,12 +68,12 @@ pushd lib
   popd
 popd
 
-cp -rf %{SOURCE10} .
+cp -rf %{SOURCE7} .
 
 sed -i -e 's!@JLINE@!%{_javadir}/jline/jline.jar!g' build.xml
 
-echo echo $(head -n 1 %{SOURCE3}) > tools/get-scala-commit-sha
-echo echo $(tail -n 1 %{SOURCE3}) > tools/get-scala-commit-date
+echo echo $(head -n 1 %{SOURCE2}) > tools/get-scala-commit-sha
+echo echo $(tail -n 1 %{SOURCE2}) > tools/get-scala-commit-date
 
 chmod 755 tools/get-scala-*
 
@@ -124,13 +121,13 @@ ln -s $(abs2rel %{_javadir}/jansi/jansi.jar %{_datadir}/scala/lib) $RPM_BUILD_RO
 
 %mvn_install
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/ant.d
-install -p -m 644 %{SOURCE9} $RPM_BUILD_ROOT%{_sysconfdir}/ant.d/scala
+install -p -m 644 %{SOURCE6} $RPM_BUILD_ROOT%{_sysconfdir}/ant.d/scala
 
 install -d $RPM_BUILD_ROOT%{_datadir}/mime-info
-install -p -m 644 %{SOURCE6} %{SOURCE7} $RPM_BUILD_ROOT%{_datadir}/mime-info/
+install -p -m 644 %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mime-info/
 
 install -d $RPM_BUILD_ROOT%{_datadir}/mime/packages/
-install -p -m 644 %{SOURCE8} $RPM_BUILD_ROOT%{_datadir}/mime/packages/
+install -p -m 644 %{SOURCE5} $RPM_BUILD_ROOT%{_datadir}/mime/packages/
 
 sed -i -e 's,@JAVADIR@,%{_javadir},g' -e 's,@DATADIR@,%{_datadir},g' $RPM_BUILD_ROOT%{_bindir}/*
 
@@ -143,7 +140,7 @@ update-mime-database %{_datadir}/mime > /dev/null 2>&1 || :
 fi
 
 %posttrans
-update-mime-database %{?fedora:-n} %{_datadir}/mime > /dev/null 2>&1 || :
+update-mime-database -n %{_datadir}/mime > /dev/null 2>&1 || :
 
 %files -f .mfiles
 %license docs/LICENSE
@@ -158,11 +155,5 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime > /dev/null 2>&1 || :
 /usr/share/maven*
 
 %changelog
-* Thu Dec 26 2019 zhujunhao <zhujunhao5@huawei.com> - 2.10.6-13
-- Type:cves
-- ID:CVE-2017-15288
-- SUG:restart
-- DESC:fix CVE-2017-15288
-
-* Fri Dec 13 2019 openEuler Buildteam <buildteam@openeuler.org> - 2.10.6-12
+* Tue Feb 18 2020 Senlin Xia <xiasenlin1@huawei.com> - 2.10.6-14
 - Package init
