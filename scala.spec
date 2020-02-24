@@ -156,4 +156,4 @@ update-mime-database -n %{_datadir}/mime > /dev/null 2>&1 || :
 
 %changelog
 * Tue Feb 18 2020 Senlin Xia <xiasenlin1@huawei.com> - 2.10.6-14
-- Package init
+- remove unused files
