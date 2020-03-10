@@ -3,7 +3,7 @@
 
 Name:          scala
 Version:       2.10.6
-Release:       14
+Release:       15
 Summary:       Combination of object-oriented and functional programming
 License:       BSD and CC0 and Public Domain
 URL:           http://www.scala-lang.org/
@@ -21,6 +21,7 @@ Patch2:        scala-2.10.3-compiler-pom.patch
 Patch3:        scala-2.10.2-java7.patch
 Patch4:        scala-2.10-jline.patch
 Patch5:        scala-2.10.4-build_xml.patch
+Patch6:	       scala-2.10.6-scaladoc-resources.patch
 Patch6000:     CVE-2017-15288-pre.patch
 Patch6001:     CVE-2017-15288.patch
 BuildArch:     noarch
@@ -155,5 +156,8 @@ update-mime-database -n %{_datadir}/mime > /dev/null 2>&1 || :
 /usr/share/maven*
 
 %changelog
+* Tue Mar 10 2020 Senlin Xia <xiasenlin1@huawei.com> - 2.10.6-15
+- add scala-2.10.6-scaladoc-resources.patch
+ 
 * Tue Feb 18 2020 Senlin Xia <xiasenlin1@huawei.com> - 2.10.6-14
 - remove unused files
