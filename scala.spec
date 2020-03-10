@@ -21,6 +21,7 @@ Patch2:        scala-2.10.3-compiler-pom.patch
 Patch3:        scala-2.10.2-java7.patch
 Patch4:        scala-2.10-jline.patch
 Patch5:        scala-2.10.4-build_xml.patch
+Patch6:	       scala-2.10.6-scaladoc-resources.patch
 Patch6000:     CVE-2017-15288-pre.patch
 Patch6001:     CVE-2017-15288.patch
 BuildArch:     noarch
